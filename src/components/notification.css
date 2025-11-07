@@ -1,0 +1,24 @@
+.notification-popup {
+  color: #be0000;
+  width: 95%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  animation: popup 0.7s;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(.9);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

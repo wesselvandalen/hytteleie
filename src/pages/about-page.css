@@ -1,0 +1,31 @@
+.about-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.about-page-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.about-page-content a {
+    text-decoration: none;
+    color: rgb(21, 118, 216);
+}
+
+.about-page-content a:hover {
+    color: rgb(8, 92, 176);
+}
+
+@media screen and (max-width: 900px) {
+    .about-page-content {
+        width: 90%;
+        margin-top: 100px;
+    }
+}

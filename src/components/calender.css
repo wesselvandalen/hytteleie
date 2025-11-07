@@ -1,0 +1,71 @@
+.calender-container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.calender-block {
+    margin: 10px 0 0 0;
+}
+
+.calender-block input {
+    border: rgba(0, 0, 0, .1) solid 1px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.calender-block h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.calender-top {
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.calender-bottom {
+    margin-top: auto;
+    margin-bottom: 45px;
+}
+
+.order-cabin-btn {
+    padding: 8px 20px;
+    border: rgba(0, 0, 0, .1) solid 1px;
+    font-size: 14px;
+    width: 100%;
+    font-family: "Inter";
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    background-color: #000;
+}
+
+.order-cabin-btn:hover {
+    cursor: pointer;
+    background-color: #242424;
+}
+
+.order-cabin-btn svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.calender-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

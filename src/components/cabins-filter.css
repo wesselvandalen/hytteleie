@@ -1,0 +1,46 @@
+.filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.filter-box-content {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-box-content p {
+    color: rgba(0, 0, 0, .5);
+    font-size: 13px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 8px 16px;
+    font-size: 14px;
+}  
+
+.filter svg {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 1px;
+}
+
+.filter input[type='number'] {
+    width: 40px;
+}
+
+.filter input[type='text'] {
+    width: 120px;
+    padding: 2px;
+    margin-left: 2px;
+}
