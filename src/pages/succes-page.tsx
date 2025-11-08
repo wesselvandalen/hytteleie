@@ -4,7 +4,7 @@ import './succes-page.css';
 import { useEffect, useState } from 'react';
 import { getCabinById } from '../service/cabins-service';
 import type { Cabin } from '../model/cabin';
-import { getColorByCategory, makePriceReadable } from '../service/utils';
+import { getColorByCategory, getFirstXSentences, makePriceReadable } from '../service/utils';
 
 export default function SuccesPage() {
     const { width, height } = useWindowSize()
@@ -15,10 +15,13 @@ export default function SuccesPage() {
         sessionStorage.clear();
     }, []);
 
-    const handleCabinFetch = () => {
+   const handleCabinFetch = async () => {
         const cabinId: string | null = sessionStorage.getItem("cabinId");
-        if (cabinId) setCabin(getCabinById(cabinId));
-    }
+        if (cabinId) {
+            const fetchedCabin: any = await getCabinById(cabinId);
+            setCabin(fetchedCabin);
+        }
+    };
 
     if (!cabin) {
         return <p>Cabin kunne ikke hentes...</p>
@@ -62,7 +65,7 @@ export default function SuccesPage() {
                                 <p>{cabin.location}</p>
                             </div>
 
-                            <p className='cabin-description'>{cabin.description}</p>
+                            <p className='cabin-description'>{getFirstXSentences(cabin.description, 2)}</p>
 
                             <div className="cabin-amenities">
                                 {cabin.amenities.map((amenity: string, index: number) => {

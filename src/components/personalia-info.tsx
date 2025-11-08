@@ -4,10 +4,10 @@ import type { Cabin } from "../model/cabin";
 import { makePriceReadable } from "../service/utils";
 
 export default function PersonaliaInfo() {
-    const [cabin, setCabin] = useState<Cabin>();
-    const [formData, setFormData] = useState<any>();
-    const [startDate, setStartDate] = useState<string>();
-    const [endDate, setEndDate] = useState<string>();
+    const [cabin, setCabin] = useState<Cabin | null>(null);
+    const [formData, setFormData] = useState<any>({});
+    const [startDate, setStartDate] = useState<string>("");
+    const [endDate, setEndDate] = useState<string>("");
     const [days, setDays] = useState(0);
 
     useEffect(() => {
@@ -16,51 +16,51 @@ export default function PersonaliaInfo() {
         handleDatumsFetch();
     }, []);
 
-    const handleCabinFetch = () => {
+    const handleCabinFetch = async () => {
         const cabinId: string | null = sessionStorage.getItem("cabinId");
-        if (cabinId) setCabin(getCabinById(cabinId));
-    }
+        if (cabinId) {
+            const fetchedCabin = await getCabinById(cabinId);
+            setCabin(fetchedCabin);
+        }
+    };
 
     const handleFormDataFetch = () => {
         const formDataData: string | null = sessionStorage.getItem("formdata");
         if (formDataData) {
-            const formDataJSON = JSON.parse(formDataData);
-            setFormData(formDataJSON);
+            setFormData(JSON.parse(formDataData));
         }
-    }
+    };
 
     const handleDatumsFetch = () => {
         const datumsData: string | null = sessionStorage.getItem("datums");
         if (datumsData) {
-            const datumsDataInDataForm: any = JSON.parse(datumsData);
-            setStartDate(turnDateIntoReadableString(datumsDataInDataForm.startDate));
-            setEndDate(turnDateIntoReadableString(datumsDataInDataForm.endDate));
-            setDays(datumsDataInDataForm.numberOfDays)
+            const parsedData: any = JSON.parse(datumsData);
+            setStartDate(turnDateIntoReadableString(parsedData.startDate));
+            setEndDate(turnDateIntoReadableString(parsedData.endDate));
+            setDays(parsedData.numberOfDays);
         }
-    }
+    };
 
     const turnDateIntoReadableString = (date: any): string => {
         const d = new Date(date);
         const day = String(d.getDate()).padStart(2, '0');
         const month = String(d.getMonth() + 1).padStart(2, '0'); 
         const year = d.getFullYear();
-
         return `${day}-${month}-${year}`;
     };
 
     const placeOrder = () => {
         window.location.assign("/suksess");
-    }
+    };
 
     if (!cabin) {
-        return <p>Det er ingen cabin</p>
+        return <p>Det er ingen cabin</p>;
     }
-    
+
     return (
         <div className="personaliainfo-container">
             <div className="oop-section">
                 <p className="bold">Personlig informasjon</p>
-
                 <div className="oop-form-data">
                     <p>Navn: {formData.name}</p>
                     <p>E-post: {formData.email}</p>
@@ -78,7 +78,6 @@ export default function PersonaliaInfo() {
 
             <div className="oop-section">
                 <p className="bold">Valgte datoene:</p>
-
                 <div className="oop-form-data">
                     <p>Startdato: {startDate}</p>
                     <p>Sluttdato: {endDate}</p>
@@ -100,5 +99,5 @@ export default function PersonaliaInfo() {
                 </svg>
             </button>
         </div>
-    )
+    );
 }
