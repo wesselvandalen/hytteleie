@@ -2,25 +2,27 @@ import { useEffect, useState } from 'react';
 import './cabins-page.css';
 import type { Cabin } from '../model/cabin';
 import CabinBlock from '../components/cabin-block';
-import { findCabinsByLocation } from '../service/cabins-service';
-import { cabins as cabinList } from '../data/cabins';
+import { findCabinsByLocation, getAllCabins } from '../service/cabins-service';
 import CabinFilter from '../components/cabins-filter';
 
 export default function CabinsPage() {
-    const [cabins, setCabins] = useState<Cabin[]>(cabinList);
+    const [cabins, setCabins] = useState<Cabin[]>([]);
     const [location, setLocation] = useState<string>("");
 
     useEffect(() => {
         handleFilterCabinsByLocation();
+        getCabins();
     }, [location]);
 
-    const handleFilterCabinsByLocation = () => {
+    const getCabins = async () => setCabins(await getAllCabins());
+
+    const handleFilterCabinsByLocation = async () => {
         if (!location.trim()) {
-            setCabins(cabinList);
+            setCabins(await getAllCabins()); // reset to all cabins
             return;
         }
 
-        const filteredCabinData = findCabinsByLocation(location);
+        const filteredCabinData = await findCabinsByLocation(location);
         setCabins(filteredCabinData);
     };
 

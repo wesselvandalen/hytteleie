@@ -14,9 +14,12 @@ export default function CabinInfoPage() {
 
     useEffect(() => {
         if (cabinId) handleCabinFetch(cabinId);
-    }, []);
+    }, [cabinId]);
 
-    const handleCabinFetch = (id: string) => setCabin(getCabinById(id));
+    const handleCabinFetch = async (id: string) => {
+        const fetchedCabin = await getCabinById(id);
+        setCabin(fetchedCabin);
+    };
 
     if (!cabin) {
         return <p className='no-cabin-found'>Det finnes ingen hytte med id {cabinId}</p>

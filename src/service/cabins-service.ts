@@ -1,26 +1,34 @@
 import type { Cabin } from "../model/cabin";
-import { cabins } from "../data/cabins";
+import { collection, getDocs } from "firebase/firestore"; 
+import { db } from "../config/firebase.config";
 
-export function findCabinsByLocation(location: string) {
-    let matchingLocations: Cabin[] = [];
-
-    for (let i = 0; i < cabins.length; i++) {
-        const currentCabin: Cabin = cabins[i];
-
-        if (currentCabin.location.toLowerCase().includes(location.toLowerCase())) {
-            matchingLocations.push(currentCabin);
-        }
-    }
-
-    return matchingLocations;
+export async function findCabinsByLocation(location: string): Promise<Cabin[]> {
+    const cabins = await getAllCabins(); 
+    return cabins.filter(cabin =>
+        cabin.location.toLowerCase().includes(location.toLowerCase())
+    );
 }
 
-export function getCabinById(id: string): any {
-    for (let i = 0; i < cabins.length; i++) {
-        const currentCabin: Cabin = cabins[i];
+export async function getAllCabins(): Promise<any[]> {
+  try {
+    const cabinsCol = collection(db, "cabins"); // Reference to "cabins" collection
+    const cabinSnapshot = await getDocs(cabinsCol); // Fetch all docs
+    const cabins = cabinSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); // Map to array with id
+    return cabins;
+  } catch (error) {
+    console.error("Error fetching cabins:", error);
+    throw error;
+  }
+}
 
-        if (currentCabin.id === id) {
-            return currentCabin;
+export async function getCabinById(id: string): Promise<Cabin | null> {
+    const cabins = await getAllCabins(); // await here
+
+    for (const cabin of cabins) {
+        if (cabin.id === id) {
+            return cabin;
         }
     }
+
+    return null; 
 }
