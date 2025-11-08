@@ -170,6 +170,49 @@
     margin: 0;
 }
 
+/* Home info */
+
+.story-box {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 60px;
+}
+
+.story-box-left img {
+    width: 500px;
+    border-radius: 4px;
+}
+
+.story-box-right {
+    color: white;
+    height: 100%;
+}
+
+.story-box-right h3 {
+    font-size: 42px;
+    margin: -5px 0 0 0;
+}
+
+.story-box-button {
+    color: white;
+    text-decoration: none;
+    margin-top: 110px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.story-box-button:hover {
+    text-decoration: underline;
+}
+
+.story-box-button svg {
+    width: 20px;
+    height: 20px;
+}
+
 @media screen and (max-width: 900px) {
     .home-overlay h3 {
         width: 90%;
@@ -187,5 +230,18 @@
 
     .perks-stripe {
         display: none;
+    }
+
+    .story-box {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    .story-box-left img {
+        width: 100%;
+    }
+
+    .story-box-button {
+        margin-top: 30px;
     }
 }
