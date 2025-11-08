@@ -170,7 +170,7 @@
     margin: 0;
 }
 
-/* Home info */
+/* Story box */
 
 .story-box {
     display: flex;
@@ -211,6 +211,56 @@
 .story-box-button svg {
     width: 20px;
     height: 20px;
+}
+
+/* Features */
+
+.features-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+    height: 100%;
+    margin-bottom: 60px;
+}
+
+.features-box h3 {
+    font-size: 42px;
+    margin: 0;
+}
+
+.features {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 100px;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.feature-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.feature-title {
+    font-size: 20px;
+    margin: 10px 0 0 0;
+    font-weight: 500;
+}
+
+.feature-description {
+    color: #c0c0c0;
+    margin: 10px 0 0 0;
+}
+
+.feature-box svg {
+    width: 30px;
+    height: 30px;
 }
 
 @media screen and (max-width: 900px) {

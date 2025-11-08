@@ -10,21 +10,21 @@ export default function CabinsPage() {
     const [location, setLocation] = useState<string>("");
 
     useEffect(() => {
-        handleFilterCabinsByLocation();
-        getCabins();
+        const fetchCabins = async () => {
+            if (location.trim()) {
+                const filtered = await findCabinsByLocation(location);
+                setCabins(filtered);
+            } else {
+                setCabins(await getAllCabins());
+            }
+        };
+        fetchCabins();
     }, [location]);
 
-    const getCabins = async () => setCabins(await getAllCabins());
-
-    const handleFilterCabinsByLocation = async () => {
-        if (!location.trim()) {
-            setCabins(await getAllCabins()); // reset to all cabins
-            return;
-        }
-
-        const filteredCabinData = await findCabinsByLocation(location);
-        setCabins(filteredCabinData);
-    };
+    useEffect(() => {
+        // Load all cabins on first render
+        getAllCabins().then(setCabins);
+    }, []);
 
     return (
         <div className="cabins-page-container">
@@ -41,7 +41,7 @@ export default function CabinsPage() {
                         />
                     </div>
                     <div className="cabins-list">
-                        {cabins.map((cabin: Cabin) => (
+                        {cabins.map(cabin => (
                             <CabinBlock key={cabin.id} cabin={cabin} />
                         ))}
                     </div>

@@ -1,11 +1,13 @@
 import type { Cabin } from "../model/cabin";
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.config";
 
 export async function findCabinsByLocation(location: string): Promise<Cabin[]> {
-    const cabins = await getAllCabins(); 
+    const cabins = await getAllCabins();
+    const search = location.trim().toLowerCase();
+
     return cabins.filter(cabin =>
-        cabin.location.toLowerCase().includes(location.toLowerCase())
+        cabin.location.trim().toLowerCase().includes(search)
     );
 }
 
@@ -22,13 +24,13 @@ export async function getAllCabins(): Promise<any[]> {
 }
 
 export async function getCabinById(id: string): Promise<Cabin | null> {
-    const cabins = await getAllCabins(); // await here
+  const cabins = await getAllCabins(); // await here
 
-    for (const cabin of cabins) {
-        if (cabin.id === id) {
-            return cabin;
-        }
+  for (const cabin of cabins) {
+    if (cabin.id === id) {
+      return cabin;
     }
+  }
 
-    return null; 
+  return null;
 }
