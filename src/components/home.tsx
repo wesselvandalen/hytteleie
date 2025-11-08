@@ -1,5 +1,6 @@
 import './home.css';
 import background from '../assets/bakgrunn.jpg';
+import CountUp from 'react-countup';
 
 export default function Home() {
     return (
@@ -27,28 +28,28 @@ export default function Home() {
                 <div className="hero-content">
                     
                     <div className="perk-box">
-                        <h3>20+</h3>
+                        <h3><CountUp end={20} duration={2} enableScrollSpy={true} suffix="+" /></h3>
                         <p>år<br/>erfaring</p>
                     </div>
 
                     <p className='perks-stripe'>|</p>
 
                     <div className="perk-box">
-                        <h3>8</h3>
+                        <h3><CountUp end={8} duration={2} enableScrollSpy={true} /></h3>
                         <p>Fantastiske<br/>hytter</p>
                     </div>
 
                     <p className='perks-stripe'>|</p>
 
                     <div className="perk-box">
-                        <h3>10K+</h3>
+                        <h3><CountUp end={10} duration={2} enableScrollSpy={true} suffix="K+" /></h3>
                         <p>Fornøyde<br/>kunder</p>
                     </div>
 
                     <p className='perks-stripe'>|</p>
 
                     <div className="perk-box">
-                        <h3>4.7</h3>
+                        <h3><CountUp end={4} duration={2} enableScrollSpy={true} /></h3>
                         <p>Gjennomsnittlig<br/>anmeldelse</p>
                     </div>
 

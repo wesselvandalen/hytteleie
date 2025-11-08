@@ -11,15 +11,18 @@ import LoginPage from './pages/login-page.js';
 import SuccesPage from './pages/succes-page.js';
 import Footer from './components/footer.js';
 import { AuthContext } from './contexts/auth-context.js';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import type { AuthContextType } from './model/auth-context.js';
 import CheckoutPage from './pages/checkout-page.js';
+import { ReactLenis } from 'lenis/react';
 
 export default function App() {
   const { user } = useContext(AuthContext) as AuthContextType;
 
   return (
     <Router>
+      <ReactLenis root />
+
       <div className="app-container">
         <div className="app-wrapper">
           <div className="app-innhold">
@@ -51,6 +54,7 @@ export default function App() {
           </div>
         </div>
       </div>
+      <ReactLenis />
     </Router>
   )
 }
