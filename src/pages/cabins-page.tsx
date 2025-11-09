@@ -2,29 +2,24 @@ import { useEffect, useState } from 'react';
 import './cabins-page.css';
 import type { Cabin } from '../model/cabin';
 import CabinBlock from '../components/cabin-block';
-import { findCabinsByLocation, getAllCabins } from '../service/cabins-service';
+import { findCabins } from '../service/cabins-service';
 import CabinFilter from '../components/cabins-filter';
 
 export default function CabinsPage() {
     const [cabins, setCabins] = useState<Cabin[]>([]);
     const [location, setLocation] = useState<string>("");
+    const [maxGuests, setMaxGuests] = useState<number | "">("");
+    const [maxPrice, setMaxPrice] = useState<number | "">("");
+    const [amenities, setAmenities] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchCabins = async () => {
-            if (location.trim()) {
-                const filtered = await findCabinsByLocation(location);
-                setCabins(filtered);
-            } else {
-                setCabins(await getAllCabins());
-            }
+            const filtered = await findCabins({ location, maxGuests, maxPrice, amenities });
+            setCabins(filtered);
         };
         fetchCabins();
-    }, [location]);
+    }, [location, maxGuests, maxPrice, amenities]);
 
-    useEffect(() => {
-        // Load all cabins on first render
-        getAllCabins().then(setCabins);
-    }, []);
 
     return (
         <div className="cabins-page-container">
@@ -38,6 +33,12 @@ export default function CabinsPage() {
                         <CabinFilter
                             location={location}
                             setLocation={setLocation}
+                            maxGuests={maxGuests}
+                            setMaxGuests={setMaxGuests}
+                            maxPrice={maxPrice}
+                            setMaxPrice={setMaxPrice}
+                            amenities={amenities}
+                            setAmenities={setAmenities}
                         />
                     </div>
                     <div className="cabins-list">

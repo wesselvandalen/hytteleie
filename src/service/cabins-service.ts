@@ -2,13 +2,25 @@ import type { Cabin } from "../model/cabin";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.config";
 
-export async function findCabinsByLocation(location: string): Promise<Cabin[]> {
-    const cabins = await getAllCabins();
-    const search = location.trim().toLowerCase();
+interface CabinFilterOptions {
+    location?: string;
+    maxGuests?: number | "";
+    maxPrice?: number | "";
+    amenities?: string[];
+}
 
-    return cabins.filter(cabin =>
-        cabin.location.trim().toLowerCase().includes(search)
-    );
+export async function findCabins({ location, maxGuests, maxPrice, amenities }: CabinFilterOptions): Promise<Cabin[]> {
+    const cabins = await getAllCabins();
+    return cabins.filter(cabin => {
+        const matchesLocation = location?.trim() ? cabin.location.toLowerCase().includes(location.trim().toLowerCase()) : true;
+        const matchesGuests = maxGuests ? cabin.maxGuests <= maxGuests : true;
+        const matchesPrice = maxPrice ? cabin.pricePerNight <= maxPrice : true;
+        const matchesAmenities = amenities && amenities.length > 0
+            ? amenities.every(a => cabin.amenities.includes(a))
+            : true;
+
+        return matchesLocation && matchesGuests && matchesPrice && matchesAmenities;
+    });
 }
 
 export async function getAllCabins(): Promise<any[]> {

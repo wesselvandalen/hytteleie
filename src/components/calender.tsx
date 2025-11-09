@@ -54,19 +54,21 @@ export default function Calendar({ props }: any) {
     return (
         <div className="calender-top">
             <div className="calender-container">
-                <div className="calender-block">
-                    <h3>Velg en startdato</h3>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={handleStartDateChange}
-                    />
-                </div>
-                <div className="calender-block">
-                    <h3>Velg en sluttdato</h3>
-                    <DatePicker
-                        selected={endDate}
-                        onChange={handleEndDateChange}
-                    />
+                <div className="calender-blocks">
+                    <div className="calender-block">
+                        <h3>Velg en startdato</h3>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={handleStartDateChange}
+                        />
+                    </div>
+                    <div className="calender-block">
+                        <h3>Velg en sluttdato</h3>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={handleEndDateChange}
+                        />
+                    </div>
                 </div>
                 {showNotification && (
                     <Notification

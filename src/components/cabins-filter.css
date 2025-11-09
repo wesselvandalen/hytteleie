@@ -9,8 +9,9 @@
 .filter-box-content {
     margin: 5px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
+    flex-direction: column;
 }
 
 .filter-box-content p {
@@ -36,11 +37,26 @@
 }
 
 .filter input[type='number'] {
-    width: 40px;
+    width: 100px;
 }
 
 .filter input[type='text'] {
     width: 120px;
     padding: 2px;
     margin-left: 2px;
+}
+
+.amenities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
 }
