@@ -1,6 +1,7 @@
 import './home.css';
 import background from '../assets/bakgrunn.jpg';
 import CountUp from 'react-countup';
+import qr from "../assets/qr.svg";
 
 export default function Home() {
     return (
@@ -110,6 +111,32 @@ export default function Home() {
                                 <p className='feature-title'>Billigste priser</p>
                                 <p className='feature-description'>HytteLeie tilbyr de billigste prisene når det gjelder hytter og ferien.</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="hero-section">
+                <div className="hero-content">
+                    <div className="home-review">
+                        <div className="home-review-info">
+                            <h3>«Noe av det beste jeg vet – å trekke seg tilbake til en hytte i naturen og virkelig kjenne roen.» - Maja</h3>
+                            <p>Lei en hytte og opplev det ekte Norge – stillheten, frisk luft og utsikt som tar pusten fra deg. Enten du vil våkne til lyden av bølger ved kysten, nyte solnedgangen over fjellene, eller tenne peisen etter en dag på ski, finner du hytten som passer perfekt for deg. Her kan du senke skuldrene, koble fra hverdagen og bare nyte øyeblikket – akkurat slik det skal være på hyttetur.</p>
+                        </div>
+
+                        <img src="https://media.istockphoto.com/id/1494297717/photo/woman-in-knitted-sweater-standing-in-norwegian-countryside.jpg?s=612x612&w=0&k=20&c=wwOtNGY9MtVts7ZOKLGTE3H_iCTDCREHfEgKmdN5c7o=" alt="Reviewer" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="hero-section">
+                <div className="hero-content">
+                    <div className="qr-box">
+                        <img src={qr} alt="QR code" />
+
+                        <div className="qr-info">
+                            <h3>Skan koden vår</h3>
+                            <p>Skann koden for å oppleve den mest enkle måten å leie hytter på.</p>
                         </div>
                     </div>
                 </div>

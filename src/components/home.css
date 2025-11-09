@@ -264,6 +264,63 @@
     height: 30px;
 }
 
+/* Home review */
+
+.home-review {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.home-review img {
+    width: 500px;
+}
+
+.home-review-info {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.home-review-info h3 {
+    font-size: 36px;
+    color: white;
+    margin: 0 0 20px 0;
+}
+
+.home-review-info p {
+    color: white;
+    margin: 0;
+}
+
+/* QR kode */
+
+.qr-box {
+    display: flex;
+    align-content: start;
+    justify-content: start;
+    gap: 40px;
+    width: 100%;
+}
+
+.qr-box img {
+    width: 150px;
+}
+
+.qr-box h3 {
+    font-size: 42px;
+    color: white;
+    margin: 0;
+}
+
+.qr-box p {
+    color: #c0c0c0;
+    margin: 10px 0 0 0;
+}
+
 @media screen and (max-width: 900px) {
     .home-overlay h3 {
         width: 90%;
