@@ -3,24 +3,40 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.config";
 
 interface CabinFilterOptions {
-    location?: string;
-    maxGuests?: number | "";
-    maxPrice?: number | "";
-    amenities?: string[];
+  location?: string;
+  maxGuests?: number | "";
+  maxPrice?: number | "";
+  amenities?: string[];
 }
 
-export async function findCabins({ location, maxGuests, maxPrice, amenities }: CabinFilterOptions): Promise<Cabin[]> {
-    const cabins = await getAllCabins();
-    return cabins.filter(cabin => {
-        const matchesLocation = location?.trim() ? cabin.location.toLowerCase().includes(location.trim().toLowerCase()) : true;
-        const matchesGuests = maxGuests ? cabin.maxGuests <= maxGuests : true;
-        const matchesPrice = maxPrice ? cabin.pricePerNight <= maxPrice : true;
-        const matchesAmenities = amenities && amenities.length > 0
-            ? amenities.every(a => cabin.amenities.includes(a))
-            : true;
+export async function findCabins({
+  location,
+  maxGuests,
+  maxPrice,
+  amenities,
+}: CabinFilterOptions): Promise<Cabin[]> {
+  const cabins = await getAllCabins();
 
-        return matchesLocation && matchesGuests && matchesPrice && matchesAmenities;
-    });
+  return cabins.filter((cabin) => {
+    const matchesLocation = location?.trim()
+      ? cabin.location.toLowerCase().includes(location.trim().toLowerCase())
+      : true;
+
+    const matchesGuests = maxGuests ? cabin.maxGuests >= maxGuests : true;
+
+    const matchesPrice = maxPrice ? cabin.pricePerNight <= maxPrice : true;
+
+    const matchesAmenities =
+      amenities && amenities.length > 0
+        ? amenities.every((a) =>
+            cabin.amenities
+              .map((am: string) => am.toLowerCase())
+              .includes(a.toLowerCase())
+          )
+        : true;
+
+    return matchesLocation && matchesGuests && matchesPrice && matchesAmenities;
+  });
 }
 
 export async function getAllCabins(): Promise<any[]> {

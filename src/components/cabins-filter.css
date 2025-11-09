@@ -46,17 +46,46 @@
     margin-left: 2px;
 }
 
-.amenities-list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 5px;
-    padding-left: 20px;
+/* Radvis layout for avkrysningsbokser */
+.amenities-filter {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
-.amenity-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
+.amenities-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.amenity-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.amenity-checkbox input[type='checkbox'] {
+  accent-color: #007bff; /* moderne blå checkbox */
+  cursor: pointer;
+}
+
+.amenity-checkbox:hover {
+  background-color: #eef5ff;
+  border-color: #007bff;
+}
+
+.amenity-checkbox input:checked + span,
+.amenity-checkbox:has(input:checked) {
+  background-color: #e7f1ff;
+  border-color: #007bff;
 }
