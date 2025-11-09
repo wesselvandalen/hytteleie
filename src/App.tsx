@@ -31,7 +31,7 @@ export default function App() {
             <div className="main-content">
               <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/omoss" element={<AboutPage />} />
+                <Route path="/ideen" element={<AboutPage />} />
                 <Route path="/hytter" element={<CabinsPage />} />
                 <Route path="/hytter/:cabinId" element={<CabinInfoPage />} />
                 <Route path="/suksess" element={<SuccesPage />} />

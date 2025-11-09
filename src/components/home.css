@@ -223,6 +223,7 @@
     color: white;
     height: 100%;
     margin-bottom: 60px;
+    text-align: center;
 }
 
 .features-box h3 {
@@ -293,5 +294,13 @@
 
     .story-box-button {
         margin-top: 30px;
+    }
+
+    .features-box {
+        width: 90%;
+    }
+
+    .features { 
+        flex-direction: column;
     }
 }

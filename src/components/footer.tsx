@@ -25,7 +25,7 @@ export default function Footer() {
                     <h3>Sider</h3>
                     <a style={{ color: aColor }} href="/">Hjemmeside</a>
                     <a style={{ color: aColor }} href="/hytter">Hytter</a>
-                    <a style={{ color: aColor }} href="/omoss">Om oss</a>
+                    <a style={{ color: aColor }} href="/ideen">Idéen bak</a>
                 </div>
                 <div className="footer-section">
                     <h3>Bli med</h3>

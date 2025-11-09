@@ -1,8 +1,10 @@
 import './checkout-page.css';
 import PersonaliaForm from '../components/personalia-form';
 import PersonaliaInfo from '../components/personalia-info';
+import { useState } from 'react';
 
 export default function CheckoutPage() {
+    const [showInfo, setShowInfo] = useState(false);
 
     return (
         <div className="checkout-page-container">
@@ -16,10 +18,12 @@ export default function CheckoutPage() {
                 </div>
                 <p>Bare noen få detaljer igjen – og hytta er din!</p>
             </div>
+
             <div className="checkout-page-content">
-                <PersonaliaForm/>
-                <PersonaliaInfo/>
+                {!showInfo && <PersonaliaForm handleShowInfo={setShowInfo} />}
+                {showInfo && <PersonaliaInfo/>}
             </div>
+
         </div>
     );
 }

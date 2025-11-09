@@ -12,7 +12,7 @@ interface FormData {
     numberOfPeoplePets: number;
 }
 
-export default function PersonaliaForm() {
+export default function PersonaliaForm({ handleShowInfo }: any) {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
@@ -48,9 +48,9 @@ export default function PersonaliaForm() {
             setShowNotification(true);
             return;
         }
-
+        
         sessionStorage.setItem("formdata", JSON.stringify(formData));
-        window.location.assign("/suksess");
+        handleShowInfo(true);
     };
 
     return (

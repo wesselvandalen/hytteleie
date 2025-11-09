@@ -33,7 +33,7 @@ export default function Header() {
 
                 <div className={`header-dock ${isMenuOpen ? 'open' : ''}`}>
                     <a style={{ color: isHomePage && !isMenuOpen ? '#fff' : '#000' }} href="/hytter">Hytter</a>
-                    <a style={{ color: isHomePage && !isMenuOpen ? '#fff' : '#000' }} href="/omoss">Om oss</a>
+                    <a style={{ color: isHomePage && !isMenuOpen ? '#fff' : '#000' }} href="/ideen">Idéen bak</a>
                 </div>
 
                 <a href="/" className='header-logo' style={{ color: aColor }}>

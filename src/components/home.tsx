@@ -14,7 +14,7 @@ export default function Home() {
                     <p>Vi henter det beste fra norsk byggeskikk og blander det med moderne komfort og estetikk – for deg som vil ha begge deler.</p>
                     <div className="home-btns">
                         <a href="/hytter" className='hytte-btn'>Sjekk ut hyttene </a>
-                        <a href="/omoss" className='omoss-btn'>
+                        <a href="/ideen" className='omoss-btn'>
                             Lær mer om oss
                             <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -49,7 +49,7 @@ export default function Home() {
                     <p className='perks-stripe'>|</p>
 
                     <div className="perk-box">
-                        <h3><CountUp end={4} duration={2} enableScrollSpy={true} /></h3>
+                        <h3><CountUp end={4} duration={2} enableScrollSpy={true} />.<CountUp end={7} duration={2} enableScrollSpy={true} /></h3>
                         <p>Gjennomsnittlig<br />anmeldelse</p>
                     </div>
 
@@ -82,7 +82,7 @@ export default function Home() {
             <div className="hero-section">
                 <div className="hero-content">
                     <div className="features-box">
-                        <h3>Noen grunner hvorfor kundene elsker oss</h3>
+                        <h3>Noen grunner til hvorfor kunder elsker oss</h3>
                         <p>Her er noen grunner til hvorfor du bør velge HytteLeie</p>
 
                         <div className="features">
