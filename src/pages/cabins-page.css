@@ -31,7 +31,7 @@
 
 .cabin-filters {
     position: sticky;
-    top: 100px; 
+    top: 80px; 
     width: 400px;
     align-self: flex-start;
     height: fit-content;
