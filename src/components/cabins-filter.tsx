@@ -69,7 +69,7 @@ export default function CabinFilter({
                 </div>
 
                 <div className='filter'>
-                    <label>Max pris per natt</label>
+                    <label>Max pris per natt (kr)</label>
                     <input
                         type="number"
                         value={maxPrice}
@@ -77,7 +77,6 @@ export default function CabinFilter({
                         placeholder="F.eks. 1000"
                         min={0}
                     />
-                    kr
                 </div>
 
                 <div className="filter amenities-filter">
@@ -89,6 +88,7 @@ export default function CabinFilter({
                                     type="checkbox"
                                     checked={amenities.includes(amenity)}
                                     onChange={() => handleAmenityChange(amenity)}
+                                    className='amenity-checkbox-box'
                                 />
 
                                 {/* https://stackoverflow.com/a/1026087/24017710 */}

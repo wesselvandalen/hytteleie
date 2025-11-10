@@ -360,4 +360,18 @@
     .features { 
         flex-direction: column;
     }
+
+    .home-review {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    .home-review img {
+        width: 100%;
+    }
+
+    .qr-box {
+        width: 90%;
+        flex-direction: column;
+    }
 }

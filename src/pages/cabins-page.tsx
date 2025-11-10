@@ -20,7 +20,6 @@ export default function CabinsPage() {
         fetchCabins();
     }, [location, maxGuests, maxPrice, amenities]);
 
-
     return (
         <div className="cabins-page-container">
             <div className="cabins-page-content">
@@ -29,7 +28,6 @@ export default function CabinsPage() {
 
                 <div className="cabin-innhold">
                     <div className="cabin-filters">
-                        <h3 className='cabin-filters-title'>Filtre</h3>
                         <CabinFilter
                             location={location}
                             setLocation={setLocation}
@@ -41,10 +39,21 @@ export default function CabinsPage() {
                             setAmenities={setAmenities}
                         />
                     </div>
-                    <div className="cabins-list">
-                        {cabins.map(cabin => (
-                            <CabinBlock key={cabin.id} cabin={cabin} />
-                        ))}
+                    <div className="cabins-list-container">
+                        {cabins.length !== 0 ?
+                            <div className="cabins-list">
+                                {cabins.map(cabin => (
+                                    <CabinBlock key={cabin.id} cabin={cabin} />
+                                ))}
+                            </div>
+                            :
+                            <div className="no-cabins">
+                                <div className="no-cabins-content">
+                                    <h3>Ingen hytter funnet...</h3>
+                                    <p>Prøv å endre søket eller fjern noen filtre for å se flere alternativer.</p>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
