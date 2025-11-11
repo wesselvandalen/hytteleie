@@ -6,7 +6,6 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-
 }
 
 .filter-box-content {
@@ -128,7 +127,6 @@
 
   .filter {
     width: 100%;
-    min-width: unset;
     flex: 0;
   }
 
@@ -138,15 +136,12 @@
   }
 
   .amenities-row {
-    flex-direction: column;
     gap: 10px;
-    width: 100%;
   }
 
   .amenity-checkbox {
-    width: 100%;
     justify-content: flex-start;
-    padding: 10px 0;
+    padding: 10px 15px 10px 5px;
     font-size: 14px;
   }
 

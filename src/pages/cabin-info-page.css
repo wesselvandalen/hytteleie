@@ -237,6 +237,21 @@
         width: 90%;
     }
 
+    .ci-title-tags {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .ci-name {
+        margin: 0 0 -10px 0;
+    }
+
+    .ci-stats {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 10px;
+    }
+
     .ci-cabin-reserve {
         width: 100%;
     }

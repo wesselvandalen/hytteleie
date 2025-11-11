@@ -4,7 +4,6 @@ import './header.css';
 import { useLocation } from 'react-router-dom';
 import type { AuthContextType } from '../model/auth-context';
 import UserBlock from './user-block';
-import logo from "../assets/logo.png";
 
 export default function Header() {
     const location = useLocation();
@@ -37,7 +36,6 @@ export default function Header() {
                 </div>
 
                 <a href="/" className='header-logo' style={{ color: aColor }}>
-                    <img src={logo} alt="Logo" />
                     HytteLeie
                 </a>
 

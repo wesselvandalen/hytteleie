@@ -133,10 +133,14 @@
 @media screen and (max-width: 900px) {
     .cabin-innhold {
         flex-direction: column;
-        width: 90%;
+        width: 100%;
         align-items: center;
         gap: 0;
         height: auto; 
+    }
+
+    .cabins-page-content {
+        width: 90%;
     }
 
     .cabins-list-container {
