@@ -47,7 +47,7 @@ export default function Calendar({ props }: any) {
         }
 
         sessionStorage.setItem("datums", JSON.stringify({ startDate, endDate, 'pricePerNight': props.pricePerNight, 'numberOfDays': calculateDaysBetweenDates() }));
-        sessionStorage.setItem("cabinId", props.id);
+        sessionStorage.setItem("cabin", JSON.stringify({ props }));
         window.location.assign("/kassen");
     }
 

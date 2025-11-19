@@ -34,7 +34,7 @@ export default function App() {
                 <Route path="/ideen" element={<AboutPage />} />
                 <Route path="/hytter" element={<CabinsPage />} />
                 <Route path="/hytter/:cabinId" element={<CabinInfoPage />} />
-                <Route path="/suksess" element={<SuccesPage />} />
+                <Route path="/suksess/:bookingId" element={<SuccesPage />} />
                 <Route path="/kassen" element={<CheckoutPage />} />
 
                 {user ?

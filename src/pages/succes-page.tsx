@@ -1,31 +1,38 @@
 import { useWindowSize } from 'react-use';
 import Confetti from 'react-confetti';
 import './succes-page.css';
-import { useEffect, useState } from 'react';
-import { getCabinById } from '../service/cabins-service';
-import type { Cabin } from '../model/cabin';
-import { getColorByCategory, getFirstXSentences, makePriceReadable } from '../service/utils';
+import { useContext, useEffect, useState } from 'react';
+import type { Booking } from '../model/booking';
+import { useParams } from 'react-router-dom';
+import { AuthContext } from '../contexts/auth-context';
+import type { AuthContextType } from '../model/auth-context';
+import { getBookingById } from '../service/booking-service';
 
 export default function SuccesPage() {
-    const { width, height } = useWindowSize()
-    const [cabin, setCabin] = useState<Cabin>();
+    const { width, height } = useWindowSize();
+    const bookingId: any = useParams();
+    const { user } = useContext(AuthContext) as AuthContextType;
+    const [booking, setBooking] = useState<Booking>();
 
     useEffect(() => {
-        handleCabinFetch();
-        sessionStorage.clear();
-    }, []);
+        if (!user) return;     
+        fetchBooking();
+    }, [user]);
 
-   const handleCabinFetch = async () => {
-        const cabinId: string | null = sessionStorage.getItem("cabinId");
-        if (cabinId) {
-            const fetchedCabin: any = await getCabinById(cabinId);
-            setCabin(fetchedCabin);
+    const fetchBooking = async () => {
+        if (!user) {
+            console.error("No user");
+            return;
         }
-    };
-
-    if (!cabin) {
-        return <p>Cabin kunne ikke hentes...</p>
+        const response: any = await getBookingById(user.uid, bookingId.bookingId);
+        setBooking(response);
     }
+
+    if (!booking) {
+        return <p>There is no booking found.</p>
+    }
+
+    console.log(booking);
 
     return (
         <div className="sp-container">
@@ -42,42 +49,9 @@ export default function SuccesPage() {
                         </svg>
                         <h3>Hytta di er reservert!</h3>
                     </div>
-                    <p>Kos deg på ferien din! Du skal snart få en e-post av oss med alle detaljene.</p>
+                    <p>Kos deg på hytteturen din! Du skal snart få en e-post av oss med alle detaljene på {booking.email}.</p>
                 </div>
 
-                <div className="oop-section">
-                    <div className="cabin-wrapper">
-                        <img src={cabin.images[0]} alt="Hytte bilde" className="cabin-wrapper-img" />
-                        <div className="cabin-wrapper-info">
-                            <div className="title-tags-container">
-                                <h3 className='cabin-wrapper-title'>{cabin.title}</h3>
-                                <div className="cabin-tags">
-                                    {cabin.categories.map((tag: string, index: number) => {
-                                        return <p style={{ backgroundColor: getColorByCategory(tag) }} key={index}>{tag}</p>
-                                    })}
-                                </div>
-                            </div>
-
-                            <div className="cabin-location">
-                                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 18L2 22V6L9 2M9 18L16 22M9 18V2M16 22L22 18V2L16 6M16 22V6M16 6L9 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <p>{cabin.location}</p>
-                            </div>
-
-                            <p className='cabin-description'>{getFirstXSentences(cabin.description, 2)}</p>
-
-                            <div className="cabin-amenities">
-                                {cabin.amenities.map((amenity: string, index: number) => {
-                                    return <p key={index}>{amenity}</p>
-                                })}
-                            </div>
-
-                            <p className='cabin-max-guests'>Maks. antall gjester: {cabin.maxGuests}</p>
-                            <p className='cabin-wrapper-price'>Pris per natt: {makePriceReadable(cabin.pricePerNight)} kr</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

@@ -30,10 +30,10 @@ export default function CabinInfoPage() {
             <div className="cabin-info-content">
 
                 <div className="ci-images">
-                    <img src={cabin.images[0]} alt={`${cabin.name} utseendet`} className='ci-image-1' />
+                    <img src={cabin.images[0]} alt={`${cabin.title} utseendet`} className='ci-image-1' />
                     <div>
-                        <img src={cabin.images[1]} alt={`${cabin.name} innsiden`} className='ci-image-2' />
-                        <img src={cabin.images[2]} alt={`${cabin.name} plantegning`} className='ci-image-2' />
+                        <img src={cabin.images[1]} alt={`${cabin.title} innsiden`} className='ci-image-2' />
+                        <img src={cabin.images[2]} alt={`${cabin.title} plantegning`} className='ci-image-2' />
                     </div>
                 </div>
 

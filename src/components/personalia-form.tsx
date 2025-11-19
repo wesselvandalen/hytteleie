@@ -4,24 +4,24 @@ import Notification from "./notification";
 interface FormData {
     name: string;
     email: string;
-    address: string;
-    phone: string;
-    message: string;
-    numberOfPeopleAdults: number;
-    numberOfPeopleChildren: number;
-    numberOfPeoplePets: number;
+    adres: string;
+    phonenumber: string;
+    special_request: string;
+    adults: number;
+    children: number;
+    pets: number;
 }
 
 export default function PersonaliaForm({ handleShowInfo }: any) {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
-        address: "",
-        phone: "",
-        message: "",
-        numberOfPeopleAdults: 2,
-        numberOfPeopleChildren: 0,
-        numberOfPeoplePets: 0
+        adres: "",
+        phonenumber: "",
+        special_request: "",
+        adults: 2,
+        children: 0,
+        pets: 0
     });
     const [showNotification, setShowNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
@@ -37,13 +37,13 @@ export default function PersonaliaForm({ handleShowInfo }: any) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (formData.numberOfPeopleAdults < 1 || formData.numberOfPeopleChildren < 0 || formData.numberOfPeoplePets < 0) {
+        if (formData.adults < 1 || formData.children < 0 || formData.pets < 0) {
             setNotificationMessage("Det må minst være én voksen, og det kan ikke være negative tall på barna eller kjæledyr.");
             setShowNotification(true);
             return;
         }
 
-        if (formData.name === '' || formData.address === '' || formData.email === '' || formData.phone === '') {
+        if (formData.name === '' || formData.adres === '' || formData.email === '' || formData.phonenumber === '') {
             setNotificationMessage("Fyll inn personsdetaljene dine for å kunne fortsette.");
             setShowNotification(true);
             return;
@@ -72,16 +72,16 @@ export default function PersonaliaForm({ handleShowInfo }: any) {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="phone">Telefonnummer</label>
-                    <input type="tel" id="phone" name="phone" required placeholder='472 89 116'
-                        value={formData.phone}
+                    <label htmlFor="phonenumber">Telefonnummer</label>
+                    <input type="tel" id="phonenumber" name="phonenumber" required placeholder='472 89 116'
+                        value={formData.phonenumber}
                         onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="address">Adresse</label>
-                    <input type="text" id="address" name="address" required placeholder='Elgveien 12, 2614 Lillehammer'
-                        value={formData.address}
+                    <label htmlFor="adres">Adresse</label>
+                    <input type="text" id="adres" name="adres" required placeholder='Elgveien 12, 2614 Lillehammer'
+                        value={formData.adres}
                         onChange={handleChange}
                     />
                 </div>
@@ -112,9 +112,9 @@ export default function PersonaliaForm({ handleShowInfo }: any) {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="message">Spesielle ønsker eller behov</label>
-                    <textarea id="message" name="message" rows={4} placeholder='f.eks. allergier, tilgjengelighet'
-                        value={formData.message}
+                    <label htmlFor="special_request">Spesielle ønsker eller behov</label>
+                    <textarea id="special_request" name="special_request" rows={4} placeholder='f.eks. allergier, tilgjengelighet'
+                        value={formData.special_request}
                         onChange={handleChange}
                     />
                 </div>

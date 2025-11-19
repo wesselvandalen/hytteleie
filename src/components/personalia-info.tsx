@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import { getCabinById } from "../service/cabins-service";
-import type { Cabin } from "../model/cabin";
+import { useContext, useEffect, useState } from "react";
 import { makePriceReadable } from "../service/utils";
+import { addBookingToUser } from "../service/booking-service";
+import { AuthContext } from "../contexts/auth-context";
+import type { AuthContextType } from "../model/auth-context";
 
 export default function PersonaliaInfo() {
-    const [cabin, setCabin] = useState<Cabin | null>(null);
+    const [cabin, setCabin] = useState<any>();
     const [formData, setFormData] = useState<any>({});
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const [days, setDays] = useState(0);
+    const { user } = useContext(AuthContext) as AuthContextType;
 
     useEffect(() => {
         handleCabinFetch();
@@ -17,11 +19,9 @@ export default function PersonaliaInfo() {
     }, []);
 
     const handleCabinFetch = async () => {
-        const cabinId: string | null = sessionStorage.getItem("cabinId");
-        if (cabinId) {
-            const fetchedCabin = await getCabinById(cabinId);
-            setCabin(fetchedCabin);
-        }
+        const cabinData: any = sessionStorage.getItem("cabin");
+        const response: any = JSON.parse(cabinData);
+        setCabin(response.props);
     };
 
     const handleFormDataFetch = () => {
@@ -49,8 +49,27 @@ export default function PersonaliaInfo() {
         return `${day}-${month}-${year}`;
     };
 
-    const placeOrder = () => {
-        window.location.assign("/suksess");
+    const placeOrder = async () => {
+        const cabinId: any = cabin.id;
+
+        const booking = {
+            cabinId: cabinId,
+            price: cabin.pricePerNight * days,
+            startDate: startDate,
+            endDate: endDate,
+            name: formData.name,
+            email: formData.email,
+            phonenumber: formData.phonenumber,
+            adres: formData.adres,
+            adults: formData.adults,
+            children: formData.children,
+            pets: formData.pets,
+            special_request: formData.special_request
+        };
+
+        const response = await addBookingToUser(user.uid, booking);
+        const bookingId: string = response.id;
+        window.location.assign(`/suksess/${bookingId}`);
     };
 
     if (!cabin) {

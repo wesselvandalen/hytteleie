@@ -274,7 +274,7 @@
     width: 100%;
 }
 
-.home-review img {
+.home-review-img {
     width: 500px;
 }
 
@@ -293,6 +293,29 @@
 
 .home-review-info p {
     color: white;
+    margin: 0;
+}
+
+.review-block {
+    margin-top: 110px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.review-block img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.review-block p {
+    color: white;
+    margin: 0;
+}
+
+.review-block span {
+    color: #c0c0c0;
     margin: 0;
 }
 
@@ -357,6 +380,10 @@
         width: 90%;
     }
 
+    .review-block {
+        margin-top: 30px;
+    }
+
     .features { 
         flex-direction: column;
     }
@@ -366,7 +393,7 @@
         flex-direction: column;
     }
 
-    .home-review img {
+    .home-review-img {
         width: 100%;
     }
 
