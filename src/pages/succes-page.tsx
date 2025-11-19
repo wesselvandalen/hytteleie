@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth-context';
 import type { AuthContextType } from '../model/auth-context';
 import { getBookingById } from '../service/booking-service';
+import { makePriceReadable } from '../service/utils';
 
 export default function SuccesPage() {
     const { width, height } = useWindowSize();
@@ -15,7 +16,7 @@ export default function SuccesPage() {
     const [booking, setBooking] = useState<Booking>();
 
     useEffect(() => {
-        if (!user) return;     
+        if (!user) return;
         fetchBooking();
     }, [user]);
 
@@ -37,9 +38,13 @@ export default function SuccesPage() {
     return (
         <div className="sp-container">
             <div className="sp-content">
+
+                {/* https://www.npmjs.com/package/react-confetti */}
                 <Confetti
                     width={width}
                     height={height}
+                    numberOfPieces={50}
+                    opacity={.4}
                 />
 
                 <div className="auth-top">
@@ -49,7 +54,38 @@ export default function SuccesPage() {
                         </svg>
                         <h3>Hytta di er reservert!</h3>
                     </div>
-                    <p>Kos deg på hytteturen din! Du skal snart få en e-post av oss med alle detaljene på {booking.email}.</p>
+                    <p>Kos deg på hytteturen din! Du skal snart få en e-post av oss med alle detaljene på {booking.email}</p>
+                </div>
+
+                <div className="sp-info">
+                    <div className="booking-card">
+                        <h2 className="booking-name">{booking.name}s booking</h2>
+                        <div className="booking-grid">
+                            {/* Left: Booking Information */}
+                            <div className="booking-section">
+                                <h3>Booking detaljer</h3>
+                                <p><strong>Hytte id:</strong> {booking.cabinId}</p>
+                                <p><strong>Antall voksne:</strong> {booking.adults}</p>
+                                <p><strong>Antall barn:</strong> {booking.children}</p>
+                                <p><strong>Antall kjæledyr:</strong> {booking.pets}</p>
+                                <p><strong>Totalpris:</strong> {makePriceReadable(booking.price)} kr</p>
+                                {booking.special_request && (
+                                    <p><strong>Spesielle behov:</strong> {booking.special_request}</p>
+                                )}
+                                <p><strong>Start dato:</strong> {booking.startDate}</p>
+                                <p><strong>Slutt dato:</strong> {booking.endDate}</p>
+                            </div>
+
+                            {/* Right: User Information */}
+                            <div className="booking-section">
+                                <h3>Brukerinformasjon</h3>
+                                <p><strong>Navn:</strong> {booking.name}</p>
+                                <p><strong>E-post:</strong> {booking.email}</p>
+                                <p><strong>Telefonnummer:</strong> {booking.phonenumber}</p>
+                                <p><strong>Adresse:</strong> {booking.adres}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
